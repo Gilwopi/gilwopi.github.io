@@ -1,14 +1,19 @@
 const gameState = {};
 
 function preload () {
-  
 }
 
 function create () {
-  gameState.net = this.add.rectangle(250,150, 5, 300, 0xFFFFFF);
-  gameState.circ1 = this.add.circle(250,150,5,0xFFFFFF);
-  gameState.paddleA = this.add.rectangle(20, 150, 5, 50, 0xFFFFFF);
-  gameState.paddleB = this.add.rectangle(480, 150, 5, 50, 0xFFFFFF);
+  const text = this.add.text(208,0,'PONG', {
+    fontSize: 30,
+    fontFamily: 'Arial',
+    align: 'center'
+  });
+  gameState.net = this.add.rectangle(250,165,5,270,0xFFFFFF);
+  gameState.topLine = this.add.rectangle(250,30,500,5,0xFFFFFF);
+  gameState.circ1 = this.add.circle(250,165,5,0xFFFFFF);
+  gameState.paddleA = this.add.rectangle(20,165,5,50,0xFFFFFF);
+  gameState.paddleB = this.add.rectangle(480,165,5,50,0xFFFFFF);
   gameState.keyW = this.input.keyboard.addKey('W');
   gameState.keyS = this.input.keyboard.addKey('S');
   gameState.keyUP = this.input.keyboard.addKey('UP');
