@@ -24,7 +24,7 @@ function create () {
   //Create ball
   gameState.ball = this.add.circle(250,165,5,0xFFFFFF);
   this.physics.add.existing(gameState.ball,false);
-  gameState.ball.body.setBounce(1.05,1.05);
+  gameState.ball.body.setBounce(1,1);
   //Create paddles
   gameState.paddleA = this.add.rectangle(20,165,5,50,0xFFFFFF);
   this.physics.add.existing(gameState.paddleA,false);
@@ -44,8 +44,20 @@ function create () {
   gameState.paddleB.body.setImmovable(true);
   gameState.topLine.body.setCollideWorldBounds(true);
   gameState.topLine.body.setImmovable(true);
-  this.physics.add.collider(gameState.ball,gameState.paddleA);
-  this.physics.add.collider(gameState.ball,gameState.paddleB);
+  this.physics.add.collider(
+    gameState.paddleA,
+    gameState.ball,
+    function () {
+      x_speed *= -1.05;
+      gameState.ball.body.setVelocity(x_speed,(gameState.ball.y - gameState.paddleA.y)*3);
+  });
+  this.physics.add.collider(
+    gameState.paddleB,
+    gameState.ball,
+    function () {
+      x_speed *= -1.05
+      gameState.ball.body.setVelocity(x_speed,(gameState.ball.y - gameState.paddleB.y)*3);
+    });
   this.physics.add.collider(gameState.ball,gameState.topLine);
   resetBall();
 }
@@ -54,12 +66,12 @@ let player1_score = 0;
 let player2_score = 0;
 let reset = true; 
 let seed;
+let x_speed;
 
 function update () {
   //Restart ball
   if (gameState.keySPACE.isDown && reset) {
-    seed = Math.random() < 0.5 ? -1 : 1;
-    gameState.ball.body.setVelocity(seed*getRandomInt(150,200),getRandomInt(-50,50));
+    gameState.ball.body.setVelocity(x_speed,getRandomInt(-50,50));
     reset = false;
   }
   //Moves PaddleB down
@@ -116,9 +128,11 @@ function getRandomInt(min, max) {
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
 }
+//Resets the ball
 function resetBall() {
   gameState.ball.body.setVelocity(0,0);
   gameState.ball.x = 250;
   gameState.ball.y = 165;
   reset = true;
+  x_speed = Math.random() < 0.5 ? -150 : 150;
 }
