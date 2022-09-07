@@ -18,7 +18,9 @@ function create () {
     align: 'center'
   });
   //Create net and top divider
-  gameState.net = this.add.rectangle(250,165,5,270,0xFFFFFF);
+  for (let i = 0; i < 27; i++) {
+    this.add.rectangle(250,10*i + 34,4,6,0xFFFFFF);
+  }
   gameState.topLine = this.add.rectangle(250,30,500,5,0xFFFFFF);
   this.physics.add.existing(gameState.topLine,false);
   //Create ball
@@ -38,25 +40,24 @@ function create () {
   gameState.keySPACE = this.input.keyboard.addKey('SPACE');
   //Create colliders
   gameState.ball.body.setCollideWorldBounds(true);
-  gameState.paddleA.body.setCollideWorldBounds(true);
+  //gameState.paddleA.body.setCollideWorldBounds(true);
   gameState.paddleA.body.setImmovable(true);
-  gameState.paddleB.body.setCollideWorldBounds(true);
+  //gameState.paddleB.body.setCollideWorldBounds(true);
   gameState.paddleB.body.setImmovable(true);
-  gameState.topLine.body.setCollideWorldBounds(true);
   gameState.topLine.body.setImmovable(true);
   this.physics.add.collider(
     gameState.paddleA,
     gameState.ball,
     function () {
       x_speed *= -1.05;
-      gameState.ball.body.setVelocity(x_speed,(gameState.ball.y - gameState.paddleA.y)*3);
+      gameState.ball.body.setVelocity(x_speed,(gameState.ball.y - gameState.paddleA.y)*5);
   });
   this.physics.add.collider(
     gameState.paddleB,
     gameState.ball,
     function () {
       x_speed *= -1.05
-      gameState.ball.body.setVelocity(x_speed,(gameState.ball.y - gameState.paddleB.y)*3);
+      gameState.ball.body.setVelocity(x_speed,(gameState.ball.y - gameState.paddleB.y)*5);
     });
   this.physics.add.collider(gameState.ball,gameState.topLine);
   resetBall();
@@ -75,32 +76,32 @@ function update () {
     reset = false;
   }
   //Moves PaddleB down
-  if (gameState.keyDOWN.isDown) {
+  if (gameState.keyDOWN.isDown && gameState.paddleB.y < 275) {
     gameState.paddleB.y += 2;
   }
   //Moves PaddleB up
-  if (gameState.keyUP.isDown) {
+  if (gameState.keyUP.isDown && gameState.paddleB.y > 55) {
     gameState.paddleB.y -= 2;
   }
   //Moves PaddleA down
-  if (gameState.keyS.isDown) {
+  if (gameState.keyS.isDown && gameState.paddleA.y < 275) {
     gameState.paddleA.y += 2;
   }
   //Moves PaddleA up
-  if (gameState.keyW.isDown) {
+  if (gameState.keyW.isDown && gameState.paddleA.y > 55 ) {
     gameState.paddleA.y -= 2;
   }
   //Player 1 scores
   if (gameState.ball.x > 490) {
+    resetBall();
     player1_score += 1;
     gameState.score1.text = player1_score;
-    resetBall();
   }
   //Player 2 scores
   if (gameState.ball.x < 10) {
+    resetBall();
     player2_score += 1;
     gameState.score2.text = player2_score;
-    resetBall();
   }
 }
 
