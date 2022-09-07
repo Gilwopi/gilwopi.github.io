@@ -51,6 +51,9 @@ function create () {
     function () {
       x_speed *= -1.05;
       gameState.ball.body.setVelocity(x_speed,(gameState.ball.y - gameState.paddleA.y)*5);
+      if (x_speed > 500) {
+        changeBallColor();
+      }
   });
   this.physics.add.collider(
     gameState.paddleB,
@@ -58,6 +61,9 @@ function create () {
     function () {
       x_speed *= -1.05
       gameState.ball.body.setVelocity(x_speed,(gameState.ball.y - gameState.paddleB.y)*5);
+      if (x_speed > 500) {
+        changeBallColor();
+      }
     });
   this.physics.add.collider(gameState.ball,gameState.topLine);
   resetBall();
@@ -134,6 +140,12 @@ function resetBall() {
   gameState.ball.body.setVelocity(0,0);
   gameState.ball.x = 250;
   gameState.ball.y = 165;
+  gameState.ball.setFillStyle("0xFFFFFF");
   reset = true;
   x_speed = Math.random() < 0.5 ? -150 : 150;
+}
+//Changes color of the ball
+function changeBallColor() {
+  const color = Math.floor(Math.random()*16777215).toString(16);
+  gameState.ball.setFillStyle("0x" + color);
 }
