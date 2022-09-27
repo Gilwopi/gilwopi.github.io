@@ -8,6 +8,11 @@
     <body>
       <h1>Encryption and Decryption</h1>
       <p>Use a number key to encrypt and decrypt messages.</p>
+      <input type="radio" name="choice" value="encrypt">
+      <label for="encrypt">Encrypt</label>
+      <input type="radio" name="choice" value="decrypt">
+      <label for="decrypt">Decrypt</label>
+      <br><br>
       <label for="key">Key:</label>
       <input type="text" id="key" name="key" size=20>
       <br><br>
@@ -17,6 +22,6 @@
       <br><br>
       <button id="btn">Generate Encrypted/Decrypted Message</button>
       <p id="output"></p>
-      <script src="./caesar/caesar.js"></script>
+      <script src="./caesar.js"></script>
     </body>
 </html>
