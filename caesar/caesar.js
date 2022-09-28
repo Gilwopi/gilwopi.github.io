@@ -1,4 +1,4 @@
-const btn = document.getElementById("btn");
+let btn = document.getElementById("btn");
 
 btn.addEventListener("click", function(){
   const output = document.getElementById("output");
@@ -11,7 +11,7 @@ btn.addEventListener("click", function(){
   }
   const message = document.getElementById("message").value;
   const key = document.getElementById("key").value;
-  console.log(choice);
+  console.log(message);
   let result;
   if (choice == "encrypt"){
     result = encrypt(message, key);
@@ -27,12 +27,14 @@ function encrypt(message, key){
   let encryption = "";
   const keyNum = Number(key);
   for (let i = 0; i < message.length; i++){
+    console.log(message[i]);
     let ascii = Number(message[i].charCodeAt());
     console.log(ascii);
     ascii = ((ascii + keyNum - 32) % 94) + 32;
     console.log(ascii);
     encryption += String.fromCharCode(ascii);
   }
+  console.log(-3 % 5);
   return encryption;
 }
 
@@ -42,7 +44,11 @@ function decrypt(message, key){
   for (let i = 0; i < message.length; i++){
     let ascii = Number(message[i].charCodeAt());
     console.log(ascii);
-    ascii = ((ascii - keyNum - 32) % 94) + 32;
+    let temp = (ascii - keyNum - 32) % 94;
+    if (temp < 0){
+      temp += 94;
+    }
+    ascii = temp + 32;
     console.log(ascii);
     encryption += String.fromCharCode(ascii);
   }
