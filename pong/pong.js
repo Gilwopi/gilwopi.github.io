@@ -1,4 +1,4 @@
-const gameState = {};
+let gameState = {};
 
 function create () {
   //Add PONG to top of screen

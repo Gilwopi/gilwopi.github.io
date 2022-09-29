@@ -1,4 +1,4 @@
-const tictactoe = {};
+let tictactoe = {};
 
 function create() {
   //Initializes variables and grid
