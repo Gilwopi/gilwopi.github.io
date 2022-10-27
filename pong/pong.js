@@ -141,6 +141,10 @@ function resetBall() {
   gameState.ball.x = 250;
   gameState.ball.y = 165;
   gameState.ball.setFillStyle("0xFFFFFF");
+  gameState.paddleA.x = 20;
+  gameState.paddleA.y = 165;
+  gameState.paddleB.x = 480;
+  gameState.paddleB.y = 165;
   reset = true;
   x_speed = Math.random() < 0.5 ? -150 : 150;
 }
