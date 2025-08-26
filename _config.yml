@@ -17,19 +17,19 @@ avatar: https://upload.wikimedia.org/wikipedia/commons/f/f9/Hebrew_het.png
 
 # Includes an icon in the footer for each username you enter
 footer-links:
-  dribbble: ""
-  email: ""
-  facebook: ""
-  flickr: ""
-  github: ""
-  instagram: ""
-  linkedin: ""
-  pinterest: ""
-  rss: "" # just type anything here for a working RSS icon
-  twitter: ""
-  stackoverflow: "" # your stackoverflow profile, e.g. "users/50476/bart-kiers"
-  youtube: "" # channel/<your_long_string> or user/<user-name>
-  googleplus: "" # anything in your profile username that comes after plus.google.com/
+  dribbble: null
+  email: gilwopi@gmail.com
+  facebook: null
+  flickr: null
+  github: null
+  instagram: null
+  linkedin: null
+  pinterest: null
+  rss: null # just type anything here for a working RSS icon
+  twitter: null
+  stackoverflow: null # your stackoverflow profile, e.g. "users/50476/bart-kiers"
+  youtube: null # channel/<your_long_string> or user/<user-name>
+  googleplus: null # anything in your profile username that comes after plus.google.com/
 
 
 # Enter your Disqus shortname (not your username) to enable commenting on posts
